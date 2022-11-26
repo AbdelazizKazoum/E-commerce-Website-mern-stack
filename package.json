@@ -1,0 +1,23 @@
+{
+  "name": "proshop",
+  "version": "1.0.0",
+  "description": "mern stack e-commerce website",
+  "main": "server",
+  "scripts": {
+    "start": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AbdelazizKazoum/E-commerce-Website-mern-stack.git"
+  },
+  "author": "KAZOUM Abdelaziz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AbdelazizKazoum/E-commerce-Website-mern-stack/issues"
+  },
+  "homepage": "https://github.com/AbdelazizKazoum/E-commerce-Website-mern-stack#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}

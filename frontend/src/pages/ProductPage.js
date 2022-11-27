@@ -10,43 +10,52 @@ import {
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Rating from "../components/Rating";
-import productList from "../productsList";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const productItem = productList.find((p) => p._id === id);
+  const [product, setProduct] = useState({});
 
-  console.log(productItem);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const { data } = await axios.get(`/api/products/${id}`);
+      setProduct(data);
+    };
+    fetchProducts();
+  }, [id]);
+
+  console.log(product);
   return (
     <>
       <Container>
         <Row>
           <Col md={6} sm={12} lg={5}>
-            <Image className="my-3" src={productItem.image} fluid />
+            <Image className="my-3" src={product.image} fluid />
           </Col>
           <Col className="mx-auto" md={6} sm={12} lg={5}>
-            <h3 className="my-3"> {productItem.name} </h3>
+            <h3 className="my-3"> {product.name} </h3>
             <h5 className="py-3" style={{ fontWeight: "bold" }}>
               {" "}
-              {"$" + productItem.price}{" "}
+              {"$" + product.price}{" "}
             </h5>
             <Rating
-              ratingVal={productItem.rating}
-              text={" " + productItem.numReviews + "Reviews"}
+              ratingVal={product.rating}
+              text={" " + product.numReviews + "Reviews"}
             />
-            <p className="py-3">{productItem.description}</p>
+            <p className="py-3">{product.description}</p>
             <Card>
               <ListGroup>
                 <Row>
                   <Col className="m-3">Status :</Col>
                   <Col className="my-3">
-                    {productItem.countInStock > 0 ? "in stock" : "out of stock"}
+                    {product.countInStock > 0 ? "in stock" : "out of stock"}
                   </Col>
                 </Row>
               </ListGroup>
             </Card>
             <Button
-              disabled={productItem.countInStock <= 0}
+              disabled={product.countInStock <= 0}
               className=" my-4"
               type="button"
             >

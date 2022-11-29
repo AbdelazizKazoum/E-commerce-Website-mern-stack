@@ -1,5 +1,5 @@
-const express = require("express");
-const products = require("../productsList");
+import express from "express";
+import products from "../data/productsList.js";
 
 const router = express.Router();
 
@@ -8,8 +8,8 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/:id", (req, res, next) => {
-    const product = products.find((p) => p._id = req.params.id);
+  const product = products.find((p) => (p._id = req.params.id));
   res.status(200).json(product);
 });
 
-module.exports = router;
+export default router;

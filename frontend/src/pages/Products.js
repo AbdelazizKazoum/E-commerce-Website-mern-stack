@@ -17,7 +17,7 @@ const Products = () => {
   });
   return (
     <>
-      <h2>Latest Products</h2>
+      <h3>Latest Products</h3>
       <Row>
         {products.map((item, key) => (
           <Col sm={12} md={6} lg={4} xl={3} key={key}>

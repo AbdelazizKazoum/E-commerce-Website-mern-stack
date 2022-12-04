@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Products from "./pages/Products";
-import Product from "./components/ProductItem";
 import ProductPage from "./pages/ProductPage";
+
 
 const App = () => {
   return (

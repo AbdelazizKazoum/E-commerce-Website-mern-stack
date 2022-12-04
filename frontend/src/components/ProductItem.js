@@ -17,7 +17,7 @@ const Product = ({ productItem }) => {
             </strong>
           </Card.Title>
         </Link>
-        <Card.Text>
+        <Card.Text as="div">
           {
             <div className="my-3">
               <Rating

@@ -3,8 +3,8 @@ import { Container } from "react-bootstrap";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Products from "./pages/Products";
-import ProductPage from "./pages/ProductPage";
-
+import ProductDetails from "./pages/ProductDetails";
+import CartPage from "./pages/CartPage";
 
 const App = () => {
   return (
@@ -15,7 +15,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Products />} />
             <Route path="Products" element={<Products />} />
-            <Route path="Products/:id" element={<ProductPage />} />
+            <Route path="Products/:id" element={<ProductDetails />} />
+            <Route path="cart/:id*" element={<CartPage />} />
           </Routes>
         </Container>
       </main>

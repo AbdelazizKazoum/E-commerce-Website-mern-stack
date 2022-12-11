@@ -2,6 +2,42 @@ import User from "../models/userModel.js";
 import asyncHandler from "express-async-handler";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateTokens.js";
+import jwt from "jsonwebtoken";
+
+// User Register
+const userRegister = asyncHandler(async (req, res, next) => {
+  const { name, email, password } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400);
+    throw new Error("user already exists !!");
+  }
+
+  const salt = await bcrypt.genSalt(12);
+  const hash = await bcrypt.hash(password, salt);
+
+  const user = await User.create({
+    name,
+    email,
+    password: hash,
+  });
+
+  if (user) {
+    console.log(user);
+    res.status(201).json({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(404);
+    throw new Error("invalid user data !!!");
+  }
+});
 
 //auth user
 const authUser = asyncHandler(async (req, res, next) => {
@@ -43,4 +79,4 @@ const getUserProfile = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { authUser, getUserProfile };
+export { authUser, getUserProfile, userRegister };

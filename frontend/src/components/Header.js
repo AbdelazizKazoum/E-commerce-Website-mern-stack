@@ -9,7 +9,9 @@ import { NavDropdown } from "react-bootstrap";
 import { logout } from "../actions/userActions";
 
 const Header = () => {
-  const { userInfo } = useSelector((state) => state.userLogin);
+  const loginUser = useSelector((state) => state.userLogin);
+
+  const { userInfo } = loginUser;
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
@@ -17,7 +19,7 @@ const Header = () => {
   };
 
   return (
-    <header>
+    <header>  
       <Navbar bg="light" expand="lg" collapseOnSelect>
         <Container>
           <Navbar.Brand href="/">Proshop</Navbar.Brand>

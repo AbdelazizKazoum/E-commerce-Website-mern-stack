@@ -21,7 +21,7 @@ const Products = () => {
     <>
       <h3>Latest Products</h3>
       {loading ? (
-        <Loader />
+        <Loader dem="200px" />
       ) : error ? (
         <Message variant="danger">{error}</Message>
       ) : (

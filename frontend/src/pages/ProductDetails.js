@@ -39,7 +39,7 @@ const ProductDetails = () => {
     <>
       <Container>
         {loading ? (
-          <Loader />
+          <Loader dem="200px" />
         ) : error ? (
           <Message variant="danger">{Message}</Message>
         ) : (
@@ -78,7 +78,7 @@ const ProductDetails = () => {
                         onChange={(e) =>
                           e.target.value > product.countInsStock
                             ? setQte(product.countInsStock)
-                            : setQte(e.target.value) 
+                            : setQte(e.target.value)
                         }
                         value={qte}
                       />

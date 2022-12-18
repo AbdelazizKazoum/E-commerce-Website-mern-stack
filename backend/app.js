@@ -2,13 +2,19 @@ import express from "express";
 import dotenv from "dotenv";
 import productsRouter from "./routes/productsRoute.js";
 import userRouter from "./routes/userRoute.js";
-import mongoose from "mongoose";
 import connectDb from "./config/db.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
+import cors from "cors";
 
 const app = express();
 
 dotenv.config();
+
+app.use(
+  cors({
+    orogin: "http://localhost:3000/",
+  })
+);
 
 app.use(express.json());
 

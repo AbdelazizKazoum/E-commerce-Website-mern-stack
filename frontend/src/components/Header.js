@@ -17,17 +17,21 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logout());
   };
-
   return (
-    <header>  
-      <Navbar bg="light" expand="lg" collapseOnSelect>
+    <header>
+      <Navbar
+        style={{ position: "absolute", width: "100%", zIndex: "10000" }}
+        bg="light"
+        expand="lg"
+        collapseOnSelect
+      >
         <Container>
           <Navbar.Brand href="/">Proshop</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="ms-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
+              //style={{ maxHeight: "100px" }}
               navbarScroll
             >
               <LinkContainer className="mx-2" style={{ border: "none" }}>
@@ -38,7 +42,10 @@ const Header = () => {
               {userInfo ? (
                 <NavDropdown title={userInfo.name}>
                   <LinkContainer style={{ border: "none" }} to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                    <NavDropdown.Item>
+                      {" "}
+                      <Link to="/profile">Profile</Link>
+                    </NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout

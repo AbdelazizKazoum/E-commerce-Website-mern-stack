@@ -7,13 +7,14 @@ import ProductDetails from "./pages/ProductDetails";
 import CartPage from "./pages/CartPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import UserDetailsPage from "./pages/UserDetailsPage";
 
 const App = () => {
   return (
     <Router>
       <Header />
       <main className="py-3">
-        <Container>
+        <Container style={{ marginTop: "80px" }}  >
           <Routes>
             <Route path="/" element={<Products />} />
             <Route path="Products" element={<Products />} />
@@ -21,6 +22,7 @@ const App = () => {
             <Route path="cart/:id/*" element={<CartPage />} />
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="profile" element={<UserDetailsPage />} />
           </Routes>
         </Container>
       </main>

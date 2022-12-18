@@ -9,7 +9,12 @@ import {
   productDetailsReducer,
 } from "../reducers/productReducers";
 import { cartReducer } from "../reducers/cartReducers";
-import { loginReducer, registerReducer } from "../reducers/userReducers";
+import {
+  loginReducer,
+  registerReducer,
+  userDetailsReduser,
+  updateUserReducer,
+} from "../reducers/userReducers";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -19,6 +24,8 @@ const reducer = combineReducers({
   cart: cartReducer,
   userLogin: loginReducer,
   userRegister: registerReducer,
+  userDetails: userDetailsReduser,
+  userUpdate: updateUserReducer,
 });
 
 //------------ Call cart items from local storage -------------------

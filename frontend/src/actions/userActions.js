@@ -1,5 +1,9 @@
 import axios from "axios";
+import { useStore } from "react-redux";
 import {
+  USER_DETAILS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -7,6 +11,9 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
+  USER_UPDATE_FAIL,
+  USER_UPDATE_REQUEST,
+  USER_UPDATE_SUCCESS,
 } from "../constants/userConstants";
 
 export const login = (email, password) => async (dispatch) => {
@@ -32,7 +39,6 @@ export const login = (email, password) => async (dispatch) => {
 
     //store the user
     localStorage.setItem("userInfo", JSON.stringify(data));
-
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -72,6 +78,34 @@ export const register = (name, email, password) => async (dispatch) => {
   }
 };
 
+export const getUserDetails = (token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_DETAILS_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-type": "aplication/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get("/api/users/profile", config);
+
+    dispatch({
+      type: USER_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: USER_DETAILS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+// login action
 export const logout = () => async (dispatch) => {
   console.log("log Out");
 
@@ -81,3 +115,33 @@ export const logout = () => async (dispatch) => {
   });
   window.location.reload();
 };
+
+//update user action
+export const updateUser =
+  (token, { name, email, password }) =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: USER_UPDATE_REQUEST });
+
+      const config = {
+        headers: {
+          "Content-type": "aplication/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      var body = new FormData();
+      body.append({ name: name, email: email, password: password });
+
+      const { data } = await axios.put(`/api/users/profile`, body, config);
+
+      dispatch({
+        type: USER_UPDATE_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: USER_UPDATE_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };

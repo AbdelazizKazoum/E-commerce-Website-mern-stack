@@ -1,6 +1,9 @@
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../constants/cartConstants";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SAVE_SHINPPING_ADRESS,
+} from "../constants/cartConstants";
 import axios from "axios";
-import { useStore } from "react-redux";
 
 export const addToCart = (id, qte) => async (dispatch, useStore) => {
   axios
@@ -28,10 +31,19 @@ export const addToCart = (id, qte) => async (dispatch, useStore) => {
     });
 };
 
-export const removeFromCart = (id) => async (dispatch,useStore) => {
+export const removeFromCart = (id) => async (dispatch, useStore) => {
   dispatch({
     type: CART_REMOVE_ITEM,
     payload: id,
   });
-   localStorage.setItem("cartItems", JSON.stringify(useStore().cart.cartItems));
+  localStorage.setItem("cartItems", JSON.stringify(useStore().cart.cartItems));
+};
+
+export const saveShipping = (adress) => async (dispatch) => {
+  dispatch({
+    type: CART_SAVE_SHINPPING_ADRESS,
+    payload: adress,
+  });
+
+  localStorage.setItem("shippingAdress", JSON.stringify(adress));
 };

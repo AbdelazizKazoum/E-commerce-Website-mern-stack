@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useStore } from "react-redux";
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -132,7 +131,6 @@ export const updateUser =
       const body = { name, email, password };
 
       const { data } = await axios.put(`/api/users/profile`, body, config);
-
       dispatch({
         type: USER_UPDATE_SUCCESS,
         payload: data,

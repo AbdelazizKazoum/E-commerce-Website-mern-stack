@@ -14,7 +14,7 @@ const UserDetailsPage = () => {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  const { updateError, success, loadingUpdate } = useSelector(
+  const { updateError, success, /*loadingUpdate*/ } = useSelector(
     (state) => state.userUpdate
   );
 

@@ -22,7 +22,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      navigate(`/${redirect}`);
     }
   }, [userInfo, redirect, navigate]);
 

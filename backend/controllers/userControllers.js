@@ -85,13 +85,9 @@ const updateUserProfile = asyncHandler(async (req, res, next) => {
   if (currentUser) {
     currentUser.name = req.body.name || currentUser.name;
     currentUser.email = req.body.email || currentUser.email;
-
-    console.log(req.body);
-    console.log(req.headers.authorization);
-
     if (req.body.password) {
-      const salt = bcrypt.genSalt(12);
-      const hash = bcrypt.hash(req.body.password, salt);
+      const salt = await bcrypt.genSalt(12);
+      const hash = await bcrypt.hash(req.body.password, salt);
       currentUser.password = hash;
     }
 

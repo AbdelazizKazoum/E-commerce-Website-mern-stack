@@ -41,8 +41,7 @@ const UserDetailsPage = () => {
     e.preventDefault();
 
     if (password === newPassword) {
-      dispatch(updateUser(userInfo.token, {name, email, password} ));
-      console.log(name);
+      dispatch(updateUser(userInfo.token, { name, email, password }));
     } else {
       setMessage({
         variant: "danger",

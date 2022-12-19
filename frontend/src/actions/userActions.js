@@ -54,7 +54,7 @@ export const register = (name, email, password) => async (dispatch) => {
     });
 
     const config = {
-      "Content-type": "aplication/json",
+      "Content-type": "application/json",
     };
 
     const { data } = await axios.post(
@@ -86,7 +86,7 @@ export const getUserDetails = (token) => async (dispatch) => {
 
     const config = {
       headers: {
-        "Content-type": "aplication/json",
+        "Content-type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     };
@@ -125,12 +125,11 @@ export const updateUser =
 
       const config = {
         headers: {
-          "Content-type": "aplication/json",
+          "Content-type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       };
-      var body = new FormData();
-      body.append({ name: name, email: email, password: password });
+      const body = { name, email, password };
 
       const { data } = await axios.put(`/api/users/profile`, body, config);
 

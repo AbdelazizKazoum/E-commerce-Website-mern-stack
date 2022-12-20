@@ -3,6 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveShipping } from "../actions/cartActions";
+import Progress from "../components/Progress";
 
 const ShippingPage = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const ShippingPage = () => {
   };
   return (
     <div className="shipping">
+      <Progress step1 step2></Progress>
       <Form
         className="m-4 m-auto"
         style={{ maxWidth: "500px" }}

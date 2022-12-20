@@ -3,9 +3,12 @@ main {
 }
 
 a {
-  color: black !important;
+  color: gray !important;
   text-decoration: none !important;
 }
-a:hover{
+a.active {
+  color: black !important;
+}
+a:hover {
   color: rgb(123, 115, 127) !important;
 }

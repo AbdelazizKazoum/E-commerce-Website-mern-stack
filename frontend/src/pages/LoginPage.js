@@ -18,7 +18,7 @@ const LoginPage = () => {
 
   // get user info from state if exists
   const { loading, error, userInfo } = useSelector((state) => state.userLogin);
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = location.search ? location.search.split("=")[1] : "";
 
   useEffect(() => {
     if (userInfo) {

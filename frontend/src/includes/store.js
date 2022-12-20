@@ -42,10 +42,17 @@ const userInfoFromLocalStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
   : null;
 
+//------------ Call payment Methode from local storage -------------------
+const paymentMethodeFromLocalStorage = localStorage.getItem("paymentMethode")
+  ? JSON.parse(localStorage.getItem("paymentMethode"))
+  : null;
+
+
 const initialState = {
   cart: {
     cartItems: cartItemsFromLocalStorage,
     shipping: shippingAdressFromLocalStorage,
+    paymentMethode: paymentMethodeFromLocalStorage,
   },
   userLogin: { userInfo: userInfoFromLocalStorage },
 };

@@ -15,6 +15,8 @@ import {
   userDetailsReduser,
   updateUserReducer,
 } from "../reducers/userReducers";
+import { orderReducer } from "../reducers/orderReducer";
+
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
@@ -26,6 +28,7 @@ const reducer = combineReducers({
   userRegister: registerReducer,
   userDetails: userDetailsReduser,
   userUpdate: updateUserReducer,
+  orderItems: orderReducer,
 });
 
 //------------ Call cart items from local storage -------------------
@@ -46,7 +49,6 @@ const userInfoFromLocalStorage = localStorage.getItem("userInfo")
 const paymentMethodeFromLocalStorage = localStorage.getItem("paymentMethode")
   ? JSON.parse(localStorage.getItem("paymentMethode"))
   : null;
-
 
 const initialState = {
   cart: {

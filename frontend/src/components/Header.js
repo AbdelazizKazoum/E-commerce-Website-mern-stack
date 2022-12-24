@@ -17,6 +17,7 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logout());
   };
+
   return (
     <header>
       <Navbar
@@ -26,7 +27,9 @@ const Header = () => {
         collapseOnSelect
       >
         <Container>
-          <Navbar.Brand href="/">Proshop</Navbar.Brand>
+          <Navbar.Brand href="/" style={{ color: "black ! important" }}>
+            Proshop
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav

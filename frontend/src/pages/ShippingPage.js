@@ -17,31 +17,25 @@ const ShippingPage = () => {
 
   useEffect(() => {
     if (shipping) {
-      console.log("hereeeeeeeeeeee");
       setAdress(shipping.adress);
       setCity(shipping.city);
       setCodePostal(shipping.codePostal);
       setCountry(shipping.country);
     } else {
-      console.log(shipping);
+      // console.log(shipping);
     }
   }, [shipping]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    try {
-      const shipping = {
-        adress,
-        city,
-        codePostal,
-        country,
-      };
-      navigate("/payment");
-
-      dispatch(saveShipping(shipping));
-    } catch (error) {
-      console.log(error);
-    }
+    const shipping = {
+      adress,
+      city,
+      codePostal,
+      country,
+    };
+    navigate("/payment");
+    dispatch(saveShipping(shipping));
   };
   return (
     <div className="shipping">

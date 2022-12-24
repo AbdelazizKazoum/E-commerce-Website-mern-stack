@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import productsRouter from "./routes/productsRoute.js";
 import userRouter from "./routes/userRoute.js";
+import orderRouter from "./routes/orderRoute.js";
 import connectDb from "./config/db.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
 import cors from "cors";
@@ -25,6 +26,9 @@ app.use("/api/products", productsRouter);
 
 //Users Routes call
 app.use("/api/users", userRouter);
+
+//order routes call
+app.use("/api/order", orderRouter);
 
 app.use(notFound);
 

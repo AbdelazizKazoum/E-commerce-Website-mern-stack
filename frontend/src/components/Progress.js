@@ -15,11 +15,11 @@ const Progress = ({ step1, step2, step3, step4 }) => {
       >
         <Nav.Item>
           {step1 ? (
-            <Nav.Link style={{ width: "100px" }} disabled>
+            <Nav.Link style={{ width: "150px" }} disabled>
               Signin
             </Nav.Link>
           ) : (
-            <Nav.Link style={{ width: "100px" }} eventKey="disabled" disabled>
+            <Nav.Link style={{ width: "150px" }} eventKey="disabled" disabled>
               Signin
             </Nav.Link>
           )}
@@ -27,14 +27,14 @@ const Progress = ({ step1, step2, step3, step4 }) => {
         <Nav.Item>
           {step2 ? (
             <LinkContainer
-              style={{ width: "100px" }}
+              style={{ width: "150px" }}
               eventKey="link-2"
               to="/shipping"
             >
               <Nav.Link>Shipping</Nav.Link>
             </LinkContainer>
           ) : (
-            <Nav.Link style={{ width: "100px" }} eventKey="disabled" disabled>
+            <Nav.Link style={{ width: "150px" }} eventKey="disabled" disabled>
               Shipping
             </Nav.Link>
           )}
@@ -42,14 +42,14 @@ const Progress = ({ step1, step2, step3, step4 }) => {
         <Nav.Item>
           {step3 ? (
             <LinkContainer
-              style={{ width: "100px" }}
+              style={{ width: "150px" }}
               eventKey="link-3"
               to="/payment"
             >
               <Nav.Link>Payment</Nav.Link>
             </LinkContainer>
           ) : (
-            <Nav.Link style={{ width: "100px" }} eventKey="disabled" disabled>
+            <Nav.Link style={{ width: "150px" }} eventKey="disabled" disabled>
               Paymenet
             </Nav.Link>
           )}

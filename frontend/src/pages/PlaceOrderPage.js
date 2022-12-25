@@ -22,7 +22,7 @@ const PlaceOrderPage = () => {
 
   useEffect(() => {
     if (success) {
-      navigate("orderDetails");
+      navigate(`/order/${createdOrder._id}`);
 
       return;
     } else {

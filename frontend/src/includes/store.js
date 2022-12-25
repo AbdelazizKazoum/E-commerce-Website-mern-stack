@@ -15,7 +15,7 @@ import {
   userDetailsReduser,
   updateUserReducer,
 } from "../reducers/userReducers";
-import { orderReducer } from "../reducers/orderReducer";
+import { orderDetailsReducer, orderReducer } from "../reducers/orderReducer";
 
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -29,6 +29,7 @@ const reducer = combineReducers({
   userDetails: userDetailsReduser,
   userUpdate: updateUserReducer,
   orderItems: orderReducer,
+  orderDetails: orderDetailsReducer,
 });
 
 //------------ Call cart items from local storage -------------------

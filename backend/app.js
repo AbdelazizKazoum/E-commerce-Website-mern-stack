@@ -5,6 +5,7 @@ import userRouter from "./routes/userRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 import connectDb from "./config/db.js";
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js";
+
 import cors from "cors";
 
 const app = express();
@@ -29,6 +30,11 @@ app.use("/api/users", userRouter);
 
 //order routes call
 app.use("/api/order", orderRouter);
+
+//get paypal client id
+app.get("/api/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+});
 
 app.use(notFound);
 

@@ -6,6 +6,8 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
+  ORDER_PAY_REQUEST,
+  ORDER_PAY_SUCCESS,
 } from "../constants/orderConstant";
 
 const createOrder = (order, token) => async (dispatch) => {
@@ -54,7 +56,6 @@ const orderDetails = (id, token) => async (dispatch) => {
       type: ORDER_DETAILS_SUCCESS,
       payload: data,
     });
-    
   } catch (error) {
     dispatch({
       type: ORDER_DETAILS_FAIL,
@@ -66,4 +67,36 @@ const orderDetails = (id, token) => async (dispatch) => {
   }
 };
 
-export { createOrder, orderDetails };
+const orderPayAction = (orderId, token, paymentResult) => async (dispatch) => {
+  try {
+    dispatch({ type: ORDER_PAY_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `/api/order/${orderId}/pay`,
+      paymentResult,
+      config
+    );
+
+    dispatch({
+      type: ORDER_PAY_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export { createOrder, orderDetails, orderPayAction };

@@ -4,7 +4,11 @@ import {
   ORDER_CREATE_SUCCESS,
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_RESET,
   ORDER_DETAILS_SUCCESS,
+  ORDER_MY_FAIL,
+  ORDER_MY_REQUEST,
+  ORDER_MY_SUCCESS,
   ORDER_PAY_FAIL,
   ORDER_PAY_REQUEST,
   ORDER_PAY_RESET,
@@ -48,6 +52,8 @@ const orderDetailsReducer = (state = { loading: true }, action) => {
         loading: false,
         error: action.payload,
       };
+    case ORDER_DETAILS_RESET:
+      return { order: {} };
 
     default:
       return state;
@@ -76,4 +82,36 @@ const orderPayReducer = (state = {}, action) => {
   }
 };
 
-export { orderReducer, orderDetailsReducer, orderPayReducer };
+const userOrdersReducer = (
+  state = { loadingOrders: true, orders: [] },
+  action
+) => {
+  switch (action.type) {
+    case ORDER_MY_REQUEST:
+      return { loadingOrders: true };
+    case ORDER_MY_SUCCESS:
+      return {
+        loadingOrders: false,
+        orders: action.payload,
+      };
+    case ORDER_MY_FAIL:
+      return {
+        loadingOrders: false,
+        errorOrders: action.payload,
+      };
+    case ORDER_PAY_RESET:
+      return {
+        orders: [],
+      };
+
+    default:
+      return state;
+  }
+};
+
+export {
+  orderReducer,
+  orderDetailsReducer,
+  orderPayReducer,
+  userOrdersReducer,
+};

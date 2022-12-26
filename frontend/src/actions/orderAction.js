@@ -6,6 +6,9 @@ import {
   ORDER_DETAILS_FAIL,
   ORDER_DETAILS_REQUEST,
   ORDER_DETAILS_SUCCESS,
+  ORDER_MY_FAIL,
+  ORDER_MY_REQUEST,
+  ORDER_MY_SUCCESS,
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
 } from "../constants/orderConstant";
@@ -99,4 +102,32 @@ const orderPayAction = (orderId, token, paymentResult) => async (dispatch) => {
   }
 };
 
-export { createOrder, orderDetails, orderPayAction };
+const getUserOrders = (token) => async (dispatch) => {
+  try {
+    dispatch({ type: ORDER_MY_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const { data } = await axios.get(`/api/order/myorders/`, config);
+
+    dispatch({
+      type: ORDER_MY_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ORDER_MY_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export { createOrder, orderDetails, orderPayAction, getUserOrders };

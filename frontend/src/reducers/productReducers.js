@@ -2,6 +2,8 @@ import {
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_SUCCESS,
   PRODUCT_LIST_REQUEST,
+  PRODUCT_LIST_RESET,
+  PRODUCT_DETAILS_RESET,
 } from "../constants/productConstants";
 import {
   PRODUCT_DETAILS_FAIL,
@@ -18,6 +20,9 @@ export const productListReducer = (state = { products: [] }, action) => {
       return { loading: false, products: action.payload };
     case PRODUCT_LIST_FAIL:
       return { loading: false, error: action.payload };
+    case PRODUCT_LIST_RESET:
+      return { products: [] };
+
     default:
       return state;
   }
@@ -32,6 +37,8 @@ export const productDetailsReducer = (state = { product: {} }, action) => {
       return { loading: false, product: action.payload };
     case PRODUCT_DETAILS_FAIL:
       return { loading: false, error: action.payload };
+    case PRODUCT_DETAILS_RESET:
+      return { product: {} };
     default:
       return state;
   }

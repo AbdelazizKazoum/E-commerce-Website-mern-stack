@@ -12,7 +12,6 @@ const createOrder = asyncHandler(async (req, res, next) => {
     totalPrice,
   } = req.body;
 
-  console.log(req.body);
   if (orderItems && orderItems.length === 0) {
     res.status(400);
     throw new Error("No order items");
@@ -56,7 +55,7 @@ const getOrderDetails = asyncHandler(async (req, res, next) => {
 const orderPay = asyncHandler(async (req, res, next) => {
   const orderId = req.params.id;
 
-  const order = await Order.findById({ _id: orderId });
+  const order = await Order.findById({ _id: ObjectId(orderId) });
 
   if (order) {
     order.paidAt = Date.now();
@@ -77,4 +76,10 @@ const orderPay = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { createOrder, getOrderDetails, orderPay };
+//get orders by user
+const getOrders = asyncHandler(async (req, res, next) => {
+  const orders = await Order.find({ user: req.user._id });
+  res.status(200).json(orders);
+});
+
+export { createOrder, getOrderDetails, orderPay, getOrders };

@@ -1,7 +1,12 @@
 import axios from "axios";
 import {
+  ORDER_DETAILS_RESET,
+  ORDER_PAY_RESET,
+} from "../constants/orderConstant";
+import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
+  USER_DETAILS_RESET,
   USER_DETAILS_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -112,6 +117,10 @@ export const logout = () => async (dispatch) => {
   dispatch({
     type: USER_LOGOUT,
   });
+  dispatch({ type: USER_DETAILS_RESET });
+  dispatch({ type: ORDER_PAY_RESET });
+  dispatch({ type: ORDER_DETAILS_RESET });
+
   window.location.reload();
 };
 
